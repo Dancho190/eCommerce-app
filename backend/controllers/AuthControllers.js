@@ -1,14 +1,16 @@
+const { createCustomer } = require("../middleware/commercetools.js")
+
 // Контроллер для регистрации и логина
-const register = (req, res) => {
-  const { username, password } = req.body;
+ const register = async (req, res) => {
+  const { username, email, password } = req.body;
 
   // Пример простой логики регистрации (должна быть реальная логика)
-  if (!username || !password) {
-    return res.status(400).json({ message: 'Username and password are required' });
+  try {
+    const customer = await createCustomer({ email, password, username });
+    res.status(201).json({ message: "User registered", customer });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-
-  // Здесь должна быть логика для создания пользователя в базе данных
-  res.status(201).json({ message: 'User registered successfully' });
 };
 
 const login = (req, res) => {

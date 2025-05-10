@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const authRoutes = require('../routes/authRoutes');
+const authRoutes = require('./routes/AuthRoutes.js');
 
 dotenv.config(); // Для загрузки переменных окружения
 
