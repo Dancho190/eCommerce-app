@@ -62,7 +62,42 @@ const createCustomer = async ({ email, password, username }) => {
   }
 };
 
+const login = async (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({ message: 'Username and password are required' });
+  }
+
+  const auth = Buffer.from(`${CTP_CLIENT_ID}:${CTP_CLIENT_SECRET}`).toString("base64");
+
+  try {
+    const response = await axios.post(
+      `${CTP_AUTH_URL}/oauth/${CTP_PROJECT_KEY}/customers/token`,
+      `grant_type=password&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+      {
+        headers: {
+          Authorization: `Basic ${auth}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    );
+
+    return res.status(200).json({
+      message: 'User logged in successfully',
+      access_token: response.data.access_token,
+      expires_in: response.data.expires_in,
+      scope: response.data.scope
+    });
+
+  } catch (error) {
+    console.error("Login failed:", error.response?.data || error.message);
+    return res.status(401).json({ message: 'Invalid credentials or login failed' });
+  }
+};
+
 module.exports = {
   getCTAccessToken,
   createCustomer,
+  login
 };
