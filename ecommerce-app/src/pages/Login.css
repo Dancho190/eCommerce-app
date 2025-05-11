@@ -1,0 +1,112 @@
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Занимаем всю высоту экрана */
+  width: 100%; /* Занимаем всю ширину экрана */
+  text-align: center;
+  background-image: url('./Himalayas.jpg'); /* Фоновое изображение */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Базовые стили для фона */
+.login-container {
+  width: 100%;
+  max-width: 400px; /* Задаем максимальную ширину для контейнера */
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон для логина */
+  border-radius: 8px; /* Скругление углов */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень для карточки */
+}
+
+/* Увеличиваем контейнер логина на 20% и центрируем */
+.login-form-wrapper {
+  background: rgba(255, 255, 255, 0.85); /* прозрачный фон для формы */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 480px; /* увеличиваем ширину на 20% */
+  box-sizing: border-box;
+  margin: 0 auto; /* центрируем контейнер */
+}
+
+/* Заголовок формы */
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Группа инпутов */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.3rem;
+}
+
+/* Кнопка */
+.btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Ссылки */
+.link-text {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Мобильные устройства */
+@media (max-width: 768px) {
+  .login-form-wrapper {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+
+  .login-form h2 {
+    font-size: 1.25rem;
+  }
+
+  .form-group input {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    padding: 0.65rem;
+  }
+}
