@@ -73,7 +73,7 @@ const login = async (req, res) => {
 
   try {
     const response = await axios.post(
-      `${CTP_AUTH_URL}/oauth/${CTP_PROJECT_KEY}/customers/token`,
+      `${CTP_AUTH_URL}/oauth/token`
       `grant_type=password&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
       {
         headers: {
@@ -83,11 +83,12 @@ const login = async (req, res) => {
       }
     );
 
+    console.log("💬 CommerceTools login response:", response.data);
     return res.status(200).json({
       message: 'User logged in successfully',
       access_token: response.data.access_token,
       expires_in: response.data.expires_in,
-      scope: response.data.scope
+      scope: response.data.scope,
     });
 
   } catch (error) {

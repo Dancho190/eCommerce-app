@@ -16,12 +16,36 @@ const Login: React.FC = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
-    console.log('Logging in with:', data);
-    // здесь будет логика входа
+  const onSubmit = async (data: FormData) => { // Фетч на бэкенд с получением токена
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+       console.log('Response status:', response.status);
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log(' Logged in:', result);
+        localStorage.setItem('token', result.access_token); // сохранить токен
+        // можно редиректить или показать сообщение
+      } else {
+        console.error('❌ Login failed:', result.message);
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error('❌ Network error:', error);
+      alert('Network error. Please try again.');
+    }
   };
 
+
   return (
+    <div className="auth-background">
      <div className="login-container">
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
           <h2>Login</h2>
@@ -52,6 +76,7 @@ const Login: React.FC = () => {
           </p>
         </form>
     </div>
+   </div>
   );
 };
 

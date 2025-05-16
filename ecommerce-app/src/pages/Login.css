@@ -1,11 +1,11 @@
-#root {
+.auth-background {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Занимаем всю высоту экрана */
-  width: 100%; /* Занимаем всю ширину экрана */
+  height: 100vh;
+  width: 100%;
   text-align: center;
-  background-image: url('./Himalayas.jpg'); /* Фоновое изображение */
+  background-image: url('./Himalayas.jpg');
   background-size: cover;
   background-position: center;
 }
