@@ -1,7 +1,7 @@
 // src/pages/Login.tsx
 import React from 'react';
 import { useForm } from 'react-hook-form'; // Настраиваем формы и валидацию.
-import { Link } from 'react-router-dom'; // Роутинг для навигации.
+import { Link, useNavigate } from 'react-router-dom'; // Роутинг для навигации.
 import './Login.css';
 
 type FormData = { // Настраиваем типы данных что будут отправляться на бэк.
@@ -16,6 +16,10 @@ const Login: React.FC = () => {
     formState: { errors },
   } = useForm<FormData>();
 
+  // Навигация
+  const navigate = useNavigate()
+
+  //
   const onSubmit = async (data: FormData) => { // Фетч на бэкенд с получением токена
     try {
       const response = await fetch('http://localhost:5000/api/auth/login', {
@@ -26,13 +30,13 @@ const Login: React.FC = () => {
         body: JSON.stringify(data),
       });
 
-       console.log('Response status:', response.status);
+      console.log('Response status:', response.status);
       const result = await response.json();
 
       if (response.ok) {
         console.log(' Logged in:', result);
-        localStorage.setItem('token', result.access_token); // сохранить токен
-        // можно редиректить или показать сообщение
+        localStorage.setItem('accessToken', result.access_token); // сохранить токен
+        navigate('/home')
       } else {
         console.error('❌ Login failed:', result.message);
         alert(result.message);

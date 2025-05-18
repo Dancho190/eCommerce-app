@@ -69,36 +69,45 @@ const login = async (req, res) => {
     return res.status(400).json({ message: 'Username and password are required' });
   }
 
+  // ... rest of the code remains the same ...
   const auth = Buffer.from(`${CTP_CLIENT_ID}:${CTP_CLIENT_SECRET}`).toString("base64");
+
+  // Get access token
+  const body = `grant_type=password&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}&scope=manage_my_profile:${CTP_PROJECT_KEY} manage_my_orders:${CTP_PROJECT_KEY}`;
 
   try {
     const response = await axios.post(
-      `${CTP_AUTH_URL}/oauth/token`
-      `grant_type=password&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+      `${CTP_AUTH_URL}/oauth/${CTP_PROJECT_KEY}/customers/token`,
+      body,
       {
         headers: {
-          Authorization: `Basic ${auth}`,
-          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: `Basic ${auth}`, // Аутентификация клиента с токеном в хэдерах
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
       }
     );
 
-    console.log("💬 CommerceTools login response:", response.data);
+    if (!response.data.access_token) {
+      return res.status(401).json({ message: 'No token returned' });
+    }
+
+  
+    // Ответ клиенту
+
     return res.status(200).json({
       message: 'User logged in successfully',
       access_token: response.data.access_token,
       expires_in: response.data.expires_in,
       scope: response.data.scope,
     });
-
   } catch (error) {
-    console.error("Login failed:", error.response?.data || error.message);
+    console.error("Login error:", error.response?.data || error.message);
     return res.status(401).json({ message: 'Invalid credentials or login failed' });
   }
 };
 
+
 module.exports = {
   getCTAccessToken,
   createCustomer,
-  login
 };
