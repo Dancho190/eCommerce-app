@@ -1,0 +1,16 @@
+.main-page {
+  padding-top: 80px; /* Чтобы контент не налезал на фиксированный header */
+  padding-bottom: 80px; /* Чтобы контент не налезал на footer */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4; /* светлый фон, можно заменить */
+}
+
+.main-page h4 {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+}

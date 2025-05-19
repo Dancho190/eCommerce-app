@@ -29,7 +29,7 @@ const {
 const login = async (req, res) => {
   const { username, password } = req.body;
 
-  if (!username || !password) {
+  if (!username || !password) { // Валидация на пустые поля
     return res.status(400).json({ message: 'Username and password are required' });
   }
 
@@ -44,7 +44,7 @@ const login = async (req, res) => {
   try {
     const response = await axios.post(
       `${CTP_AUTH_URL}/oauth/${CTP_PROJECT_KEY}/customers/token`, // Url
-      body,
+      body, // Тело запроса
       { // Хэдеры
         headers: {
           Authorization: `Basic ${auth}`, // Аутентификация клиента с токеном в хэдерах
@@ -60,7 +60,7 @@ const login = async (req, res) => {
   
     // Ответ клиенту
 
-    return res.status(200).json({
+    return res.status(200).json({ // Статус ответа
       message: 'User logged in successfully',
       access_token: response.data.access_token,
       expires_in: response.data.expires_in,
