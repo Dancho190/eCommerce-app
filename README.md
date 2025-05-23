@@ -1,5 +1,12 @@
 # React + TypeScript + Vite
 
+Front-end deploy link-https://682cc9a3d2506660a3aa68b1--scintillating-taiyaki-a56d73.netlify.app/login
+
+
+Install the packages on each repository.
+To run everything locally,please,clone the repo and in each directory run "npm run dev"
+
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

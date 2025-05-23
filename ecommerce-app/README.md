@@ -1,3 +1,40 @@
+🛍️ E-Commerce App (CommerceTools Integration Project)
+
+## 📖 Overview
+
+This project is a modern e-commerce web application built with a scalable front-end architecture and integrated with the [CommerceTools](https://commercetools.com/) headless commerce platform. The primary goal of this project is to set up a professional development environment and ensure clean code practices, while leveraging powerful APIs for product, cart, and customer management.
+
+Trello board-https://trello.com/b/IbuJxgT9/e-commerce-app-1-sprint
+
+---
+
+## 📌 Sprint 1 Objectives
+
+This sprint focuses on:
+- Repository setup with collaboration features
+- Project management via task board
+- CommerceTools project and API client creation
+- Configuration of development tools: TypeScript, ESLint, Prettier, Husky, and Vitest/Jest
+
+---
+
+## 🧱 Technology Stack
+
+| Area               | Technology            |
+|--------------------|------------------------|
+| Frontend Framework | React (or other)       |
+| Commerce Platform  | [CommerceTools](https://commercetools.com/) |
+| Bundler            | Vite        |
+| Language           | TypeScript             |
+| Linting            | ESLint                 |
+| Code Formatter     | Prettier               |
+| Git Hooks          | Husky                  |
+| Testing            | Jest                   |
+| Package Manager    | npm                    |
+
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -52,3 +89,4 @@ export default tseslint.config({
   },
 })
 ```
+
