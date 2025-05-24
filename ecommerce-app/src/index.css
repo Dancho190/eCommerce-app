@@ -10,7 +10,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Занимаем всю высоту экрана */
+  height: 60vh; /* Занимаем всю высоту экрана */
   width: 100%; /* Занимаем всю ширину экрана */
   text-align: center;
   background-image: url('your-background-image.jpg'); /* Добавьте свой фон */
