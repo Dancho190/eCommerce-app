@@ -1,32 +1,22 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
 import './ProductCard.css';
 
-type Props = {
-  product: {
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    image: string;
-  };
-};
+interface ProductCardProps {
+  name: string;
+  description: string;
+  imageUrl: string;
+  price: number | string;
+}
 
-export default function ProductCard({ product }: Props) {
+const ProductCard: React.FC<ProductCardProps> = ({ name, description, imageUrl, price }) => {
   return (
     <div className="product-card">
-      <img src={product.image} alt={product.name} className="product-card-img" />
-
-      <div className="product-card-content">
-        <h3 className="product-card-title">{product.name}</h3>
-        <p className="product-card-price">${product.price.toFixed(2)}</p>
-        <p className="product-card-description">
-          {product.description.slice(0, 80)}...
-        </p>
-
-        <Link to={`/product/${product.id}`} className="product-card-button">
-          View Details
-        </Link>
-      </div>
+      <img src={imageUrl} alt={name} className="product-image" />
+      <h3 className="product-name">{name}</h3>
+      <p className="product-description">{description}</p>
+      <p className="product-price">{typeof price === 'number' ? `€${price.toFixed(2)}` : price}</p>
     </div>
   );
-}
+};
+
+export default ProductCard;

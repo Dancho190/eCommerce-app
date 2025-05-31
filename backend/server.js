@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const authRoutes = require('./routes/AuthRoutes.js');
+const productRoutes = require('./routes/productRoutes.js')
 
 dotenv.config(); // Для загрузки переменных окружения
 
@@ -21,6 +22,7 @@ app.use(bodyParser.json()); // Парсинг JSON тела запросов
 
 // Маршруты
 app.use('/api/auth', authRoutes); // Роуты для аутентификации
+app.use('/api', productRoutes); // Роуты для продуктов
 
 // Запуск сервера
 app.listen(port, () => {
