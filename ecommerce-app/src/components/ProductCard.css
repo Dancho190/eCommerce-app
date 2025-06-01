@@ -18,6 +18,7 @@
   height: 150px;
   object-fit: cover;
   border-radius: 8px;
+  border: 1px solid #ccc; 
 }
 
 .product-name {
@@ -32,7 +33,7 @@
 
 .product-description {
   font-size: 0.95rem;
-  color: #ccc;
+  color: #393A3F;
   display: -webkit-box;
   -webkit-line-clamp: 2; /* limit to 3 lines */
   -webkit-box-orient: vertical;

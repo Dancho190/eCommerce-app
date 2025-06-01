@@ -16,14 +16,14 @@ const getAllProducts = async (req, res) => {
       }
     );
 
-    const products = response.data.results.map((product) => {
+    const products = response.data.results.map((product) => { // Большой массив продуктов
       const masterData = product.masterData;
       const current = masterData.current;
       const masterVariant = current.masterVariant; // Image url
 
-      const priceObj = masterVariant.price;
-      const price = priceObj ? (priceObj.value.centAmount / 100) : null;
-      const currency = priceObj ? priceObj.value.currencyCode : '';
+      const priceObj = masterVariant.prices?.[0]
+      const price = priceObj ? (priceObj.value.centAmount / 100) : null
+      const currency = priceObj?.value?.currencyCode || 'N/A';
 
       return { // Возвращаем все пропсы для компонентов с коммерстулз
         id: product.id,
@@ -36,7 +36,8 @@ const getAllProducts = async (req, res) => {
         createdAt: product.createdAt,
         lastModifiedAt: product.lastModifiedAt,
         imageUrl: masterVariant?.images?.[0]?.url || '',
-        price: price !== null ? `${price} ${currency}` : 'N/A',
+        price: price, // Number or null
+        currency: "€" // Currency string
       };
     });
 

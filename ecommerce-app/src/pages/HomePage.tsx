@@ -4,8 +4,9 @@ import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import './HomePage.css';
 
-interface Product {
+interface Product { // интерфейс(пропсы продукта которые передаются в компоненте)
   id: string;
+  key: string;
   name: string;
   description: string;
   imageUrl: string;
@@ -46,6 +47,7 @@ const HomePage: React.FC = () => {
           <div className="products-grid">
             {products.map(product => (
               <ProductCard
+                productKey={product.key} 
                 key={product.id}
                 name={product.name}
                 description={product.description}

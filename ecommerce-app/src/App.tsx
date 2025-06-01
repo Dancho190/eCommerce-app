@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Error from './pages/Error';
 import Landing from './pages/Landing'
 import Profile from './pages/Profile';
+import ProductDetails from './pages/ProductDetails';
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/home" element={<Home />} />
+         <Route path="/products/:productKey" element={<ProductDetails />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>
