@@ -14,3 +14,11 @@
   color: #333;
   text-align: center;
 }
+
+.products-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* или space-between / flex-start */
+  padding: 20px;
+}
