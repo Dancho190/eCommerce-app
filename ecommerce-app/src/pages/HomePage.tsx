@@ -10,7 +10,7 @@ interface Product { // интерфейс(пропсы продукта кото
   name: string;
   description: string;
   imageUrl: string;
-  price: number | string;
+  price: string | number ;
 }
 const HomePage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);

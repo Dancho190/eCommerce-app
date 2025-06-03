@@ -1,20 +1,98 @@
-import React from 'react';
+// src/pages/ProductDetails.tsx
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import "./ProductDetails.css"
+import styles from './ProductDetails.module.css'; // Используем специально модульный css чтобы стили не применялись ко всем
 
-const ProductDetail = () => {
-  const { productKey } = useParams();
-   console.log('Product Key:', productKey);
+interface Product {
+  id: string;
+  key: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  price: number;
+  currency: string;
+  slug: string;
+  categories: string[];
+  productTypeId: string;
+  createdAt: string;
+  lastModifiedAt: string;
+}
 
-  // Fetch product from API or use already loaded products
-  // Пример: const product = products.find(p => p.key === key);
+const ProductDetails: React.FC = () => {
+  const { productKey } = useParams(); // Название параметра должно совпадать с маршрутом
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const [isSaved, setIsSaved] = useState(false); // стейты для кнопки
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/api/products');
+        const data = await res.json();
+        const found = data.find((p: Product) => p.key === productKey);
+
+        if (found) {
+          setProduct(found);
+        } else {
+          console.warn('Product not found with key:', productKey);
+        }
+      } catch (error) {
+        console.error('Error fetching product details:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [productKey]);
+
+  if (loading) return <p>Loading product details...</p>;
+  if (!product) return <p>Product not found.</p>;
 
   return (
-    <div>
-      <h1>Product Details for: {productKey}</h1>
-      {/* Тут вставить подробности по продукту */}
+<div className={styles["productContainer"]}>
+  <div className={styles["productImageSection"]}>
+    <img
+      src={product.imageUrl}
+      alt={product.name}
+      className={styles["productImage"]}
+    />
+  </div>
+
+  <div className={styles["productInfoSection"]}>
+    <div className={styles["productTitleRow"]}>
+      <h1 className={styles["productTitle"]}>{product.name}</h1>
+      <button
+        className={`${styles["saveIcon"]} ${isSaved ? styles["saved"] : ""}`}
+        onClick={() => setIsSaved(!isSaved)}
+        aria-label="Save product"
+      >
+        ♥
+      </button>
     </div>
+
+    <p className={styles["productDescription"]}>{product.description}</p>
+
+    {product.price !== null && (
+      <p className={styles["productPrice"]}>
+        {product.price} {product.currency}
+      </p>
+    )}
+
+    <div className={styles["buttonGroup"]}>
+      <button className={styles["addToBagBtn"]}>ADD TO BAG</button>
+      <button className={styles["contactBtn"]}>CONTACT</button>
+    </div>
+
+    <div className={styles["productMeta"]}>
+      <p>ID: {product.key}</p>
+      <p>Created: {new Date(product.createdAt).toLocaleDateString()}</p>
+      <p>Updated: {new Date(product.lastModifiedAt).toLocaleDateString()}</p>
+    </div>
+  </div>
+</div>
   );
 };
 
-export default ProductDetail;
+export default ProductDetails;

@@ -9,7 +9,7 @@ interface ProductCardProps {
   name: string;
   description: string;
   imageUrl: string;
-  price: number | null ;
+  price: number | string ;
   currency: string // Пока что захардкодил,но потом добавим другие currencies с бэка
 }
 
