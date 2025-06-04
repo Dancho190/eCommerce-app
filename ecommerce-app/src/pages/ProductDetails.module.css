@@ -4,7 +4,7 @@
 /* Все чтобы они не применились глобально */
 
 .productContainer {
-  padding-top: 675px;
+  padding-top: 300px;
   display: flex;
   flex-wrap: wrap;       /* чтобы элементы переносились на узких экранах */
   max-width: 98vw;      /* растянуть по всей ширине окна */

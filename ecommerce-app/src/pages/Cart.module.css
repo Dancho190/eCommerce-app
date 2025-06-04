@@ -1,3 +1,5 @@
+
+
 main { /* Пофикси стили */
   display: flex;
   flex-direction: column;
@@ -8,6 +10,8 @@ main { /* Пофикси стили */
 .cartContainer {
   display: flex;
   flex-direction: column;  /* важный момент */
+  justify-content: center;     /* Центр по вертикали */
+  align-items: center; 
   width: 100vw;
   min-height: 100vh;       /* чтобы контейнер занимал всю высоту экрана */
   padding: 60px 80px;
@@ -17,24 +21,15 @@ main { /* Пофикси стили */
   color: #000;
   font-size: 18px;
   gap: 60px;               /* отступ между секциями */
+  margin-bottom: 0;
 }
+
 
 .topSection {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 60px;
-  flex-grow: 1;            /* занимает всё доступное место */
-  min-height: 0;           /* обязательно для корректной прокрутки */
-  width: 100%;
-  overflow-y: auto;        /* прокрутка при необходимости */
-}
-.topSection {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 60px;
-  flex-grow: 1;       /* занимает всё оставшееся пространство */
+  gap: 60px;       
   min-height: 0;      /* для правильной работы прокрутки */
   overflow-y: auto;   /* если товаров много — прокрутка */
   width: 100%;
