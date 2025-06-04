@@ -9,6 +9,7 @@ import Landing from './pages/Landing'
 import Profile from './pages/Profile';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
+import { CartProvider } from './context/CartContext';
 
 const App: React.FC = () => {
   return (
@@ -21,8 +22,15 @@ const App: React.FC = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/home" element={<Home />} />
-         <Route path="/products/:productKey" element={<ProductDetails />} />
-         <Route path="/cart" element={<Cart />} />
+         <Route path="/products/:productKey" element={
+          <CartProvider>
+          <ProductDetails />
+          </CartProvider>
+          } />
+         <Route path="/cart" element={<CartProvider>
+          <Cart />
+          </CartProvider>
+        } />
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>

@@ -1,7 +1,9 @@
 // src/pages/ProductDetails.tsx
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styles from './ProductDetails.module.css'; // Используем специально модульный css чтобы стили не применялись ко всем
+import { useCart } from '../context/CartContext';
+import toast from 'react-hot-toast';
 
 interface Product {
   id: string;
@@ -19,11 +21,16 @@ interface Product {
 }
 
 const ProductDetails: React.FC = () => {
+  const { addToCart } = useCart(); // Контекст для корзины
+  //(логика добавления товара в корзину)
+
   const { productKey } = useParams(); // Название параметра должно совпадать с маршрутом
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<Product | null>(null); // Состояния
   const [loading, setLoading] = useState(true);
 
   const [isSaved, setIsSaved] = useState(false); // стейты для кнопки
+
+  const navigate = useNavigate() // навигация в корзину
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -49,6 +56,20 @@ const ProductDetails: React.FC = () => {
 
   if (loading) return <p>Loading product details...</p>;
   if (!product) return <p>Product not found.</p>;
+
+  const handleAddButton = () => { // Логика добавления товара в корзину,что меняет контекст
+        addToCart({ // Меняем состояние корзины в контексте
+          key: product.key, // Добавляем товар по ключу 
+          name: product.name,
+          price: product.price,
+          currency: product.currency,
+          quantity: 1,
+          imageUrl: product.imageUrl,
+        })
+        toast.success('The product has been added to the cart!✅');
+        navigate('/cart')
+  }
+
 
   return (
 <div className={styles["productContainer"]}>
@@ -81,7 +102,10 @@ const ProductDetails: React.FC = () => {
     )}
 
     <div className={styles["buttonGroup"]}>
-      <button className={styles["addToBagBtn"]}>ADD TO BAG</button>
+      <button className={styles["addToBagBtn"]} 
+      onClick={handleAddButton}>
+        ADD TO CART
+        </button>
       <button className={styles["contactBtn"]}>CONTACT</button>
     </div>
 
