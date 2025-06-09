@@ -3,7 +3,8 @@
   display: flex;
   justify-content: center;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color:rgb(3, 31, 11);;
+  gap: 12px;
 }
 
 .search-form {
@@ -35,5 +36,30 @@
 }
 
 .search-button:hover {
+  background-color: #222;
+}
+
+.search-actions {
+  display: flex;
+  gap: 12px;
+  margin-left: 20px;
+  align-items: center;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #000;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #fff;
+}
+
+.action-button:hover {
   background-color: #222;
 }

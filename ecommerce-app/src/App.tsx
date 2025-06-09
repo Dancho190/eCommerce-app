@@ -9,6 +9,7 @@ import Landing from './pages/Landing'
 import Profile from './pages/Profile';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
+import About from './pages/About';
 import { CartProvider } from './context/CartContext';
 
 const App: React.FC = () => {
@@ -20,6 +21,7 @@ const App: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/landing" element={<Landing />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/about-us" element={<About />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/home" element={<Home />} />
          <Route path="/products/:productKey" element={

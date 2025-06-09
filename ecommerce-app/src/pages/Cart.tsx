@@ -2,6 +2,7 @@ import React, {useState, useEffect }from 'react';
 import { useCart } from '../context/CartContext';
 import styles from './Cart.module.css';
 import ProductCard from '../components/ProductCard';
+import SearchContainer from '../components/SearchContainer';
 
 interface Product { // Карточка похожих продуктов что дисплеиться внизу
   id: string;
@@ -21,7 +22,7 @@ const Cart: React.FC = () => {
   const fetchProducts = async () => {
     try {
       const res = await fetch('http://localhost:5000/api/products');
-      const data = await res.json();
+      const data = await res.json(); // Результат в формате json
       setProducts(Array.isArray(data) ? data.slice(0, 5) : []);
     } catch (err) {
       console.error('Error loading products:', err);
@@ -34,12 +35,17 @@ const Cart: React.FC = () => {
 
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  if (cartItems.length === 0) {
+  if (cartItems.length === 0) { // При остутсвии товаров переключаем стейт и дисплеим сообщение
     return <div className={styles.empty}>Your cart is empty 🛒</div>;
   }
 
+  const handleSearch = (query: string) => {
+  console.log('Искали:', query);
+};
+
 return (
 <div className={styles.cartContainer}>
+  <SearchContainer  onSearch={handleSearch}/>
   <div className={styles.topSection}>
     <ul className={styles.cartList}>
       {cartItems.map((item) => (
@@ -61,7 +67,7 @@ return (
       <h3>Order Summary</h3>
       <div className={styles.summaryRow}>
         <span>Subtotal</span>
-        <span>${total.toFixed(2)}</span>
+        <span>€{total.toFixed(2)}</span>
       </div>
       <div className={styles.summaryRow}>
         <span>Shipping</span>
@@ -69,7 +75,7 @@ return (
       </div>
       <div className={`${styles.summaryRow} ${styles.total}`}>
         <span>Total</span>
-        <span>${total.toFixed(2)}</span>
+        <span>€{total.toFixed(2)}</span>
       </div>
       <button className={styles.checkoutBtn}>Proceed to Checkout</button>
     </div>

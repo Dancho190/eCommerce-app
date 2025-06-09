@@ -10,7 +10,7 @@
     background:rgb(3, 31, 11);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.26);
     padding: 0 1rem;
-    z-index: 5;
+    z-index: 1000;
   }
 
 .logo-container {
@@ -49,4 +49,33 @@
 
 .nav-icon:hover, .sidebar-button:hover {
   color: #ffcc00;
+}
+
+.shipping-banner {
+  position: fixed;
+  top: 4rem; /* ровно под .main-header */
+  left: 0;
+  width: 100%;
+  background-color:rgb(0, 0, 0);
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  z-index: 999;
+}
+
+.close-banner {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+}
+
+.close-banner:hover {
+  color: #000;
 }
