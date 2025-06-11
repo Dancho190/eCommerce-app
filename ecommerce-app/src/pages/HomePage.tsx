@@ -53,12 +53,14 @@ const handleSearch = (query: string) => { // Хэндер поиска
             <SearchContainer onSearch={handleSearch} />
             {products.map(product => (
               <ProductCard
+                id={product.id}
                 productKey={product.key} 
                 key={product.id}
                 name={product.name}
                 description={product.description}
                 imageUrl={product.imageUrl}
                 price={product.price}
+                currency="EUR"
               />
             ))}
           </div>

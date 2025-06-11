@@ -12,7 +12,7 @@ const Landing = () => {
 };
 
   return (
-    <div style={{ width: '100%', height: '600px', position: 'relative' }}>
+    <div style={{ width: '100%', height: '800px', position: 'relative' }}>
      <Threads
     amplitude={4}
     distance={0}

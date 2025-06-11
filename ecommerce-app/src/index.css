@@ -9,7 +9,6 @@ html, body {
 #root {
   display: flex;
   justify-content: center;
-  height: 140vh; /* Занимаем всю высоту экрана */
   width: 100%; /* Занимаем всю ширину экрана */
   text-align: center;
   background-image: url('your-background-image.jpg'); /* Добавьте свой фон */
