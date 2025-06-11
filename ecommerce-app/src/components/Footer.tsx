@@ -25,6 +25,9 @@ const Footer: React.FC = () => {
           RS school
         </a>
       </p>
+        <a href="/about-us" target="_blank" rel="noopener noreferrer">
+          About us
+        </a>
     </footer>
   );
 };

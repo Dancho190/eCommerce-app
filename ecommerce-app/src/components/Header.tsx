@@ -1,10 +1,13 @@
-import React from 'react';
-import { FaUser, FaShoppingCart, FaBars } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaUser, FaShoppingCart, FaBars, FaTimes} from 'react-icons/fa';
 import logo from '../assets/logoipsum.png'
 import './Header.css';
 
 const Header: React.FC = () => {
+    const [showBanner, setShowBanner] = useState(true); // Стейты дисплея баннера с сообщением
+
   return (
+    <>
     <header className="main-header">
       <button className="sidebar-button" aria-label="Sidebar menu">
         <FaBars />
@@ -21,7 +24,14 @@ const Header: React.FC = () => {
           <FaShoppingCart />
         </a>
       </nav>
+       {showBanner && ( // При true отображается баннер
+        <div className="shipping-banner">
+          <span>Free shipping on orders over 250€</span>
+          <FaTimes className="close-banner" onClick={() => setShowBanner(false)} /> {/* Меняем состояние баннера при нажатии на крестик*/}
+        </div>
+      )}
     </header>
+      </>
   );
 };
 

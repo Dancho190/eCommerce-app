@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
+import SearchContainer from '../components/SearchContainer';
 import './HomePage.css';
 
 interface Product { // интерфейс(пропсы продукта которые передаются в компоненте)
@@ -10,12 +11,11 @@ interface Product { // интерфейс(пропсы продукта кото
   name: string;
   description: string;
   imageUrl: string;
-  price: number | string;
+  price: string | number ;
 }
 const HomePage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -35,6 +35,11 @@ const HomePage: React.FC = () => {
 
   fetchProducts();
 }, []);
+
+const handleSearch = (query: string) => { // Хэндер поиска
+  console.log('Искали:', query);
+};
+
   return (
     <div className="main-wrapper">
       <Header />
@@ -45,14 +50,17 @@ const HomePage: React.FC = () => {
           <p className="loading-text">Loading products...</p>
         ) : (
           <div className="products-grid">
+            <SearchContainer onSearch={handleSearch} />
             {products.map(product => (
               <ProductCard
+                id={product.id}
                 productKey={product.key} 
                 key={product.id}
                 name={product.name}
                 description={product.description}
                 imageUrl={product.imageUrl}
                 price={product.price}
+                currency="EUR"
               />
             ))}
           </div>
