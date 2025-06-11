@@ -21,7 +21,7 @@ const Cart: React.FC = () => {
   useEffect(() => { // Фетчим продукты внизу контейнера
   const fetchProducts = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/products');
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/products`);
       const data = await res.json(); // Результат в формате json
       setProducts(Array.isArray(data) ? data.slice(0, 5) : []);
     } catch (err) {
