@@ -14,6 +14,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ id, productKey, name, description, imageUrl, price  }) => {
+  console.log(id)
   return (
     <Link to={`/products/${productKey}`} className="product-card-link"> {/* Навигация по пропсу(ключу продукта из коммерстулз) */}
     <div className="product-card">
