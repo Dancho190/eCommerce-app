@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000;
 
 // Настройка CORS-ов
 app.use(cors({
-  origin: 'http://localhost:5173',  // Адрес фронтенда
+  origin: 'https://aimaq-store.netlify.app',  // Адрес фронтенда
   credentials: true,               
 }));
 
