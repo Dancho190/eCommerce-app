@@ -1,4 +1,3 @@
-import React from 'react';
 import './Profile.css';
 import { FiEdit, FiLogOut } from 'react-icons/fi';
 import { FaMessage } from 'react-icons/fa6';

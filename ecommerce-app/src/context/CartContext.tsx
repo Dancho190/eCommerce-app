@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import Cart from '../pages/Cart';
-import ProductDetails from '../pages/ProductDetails';
+
 
 export interface ProductInCart {
   key: string, // Добавляем продукт в корзину по ключу
@@ -58,8 +57,9 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({children}) => {
     });
   };
 
-  const removeFromCart = (key: string) => { // Удаляем товар из корзины
+  const removeFromCart = ( key: string) => { // Удаляем товар из корзины 
      setCartItems(prev => prev.filter(item => item.key !== item.key));;
+     console.log(key)
   };
 
   const clearCart = () => setCartItems([]); // Меняем состояние корзины

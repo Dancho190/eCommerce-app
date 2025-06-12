@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Threads from '../components/Threads'
 import BlurText from '../components/BlurText'
 import './Landing.css'
