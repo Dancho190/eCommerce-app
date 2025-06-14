@@ -2,14 +2,25 @@ import React, { useState } from 'react';
 import { FaUser, FaShoppingCart, FaBars, FaTimes} from 'react-icons/fa';
 import logo from '../assets/logoipsum.png'
 import './Header.css';
+import Sidebar from './Sidebar';
 
 const Header: React.FC = () => {
     const [showBanner, setShowBanner] = useState(true); // Стейты дисплея баннера с сообщением
+    const [sidebarOpen, setSidebarOpen] = useState(false); // Стейты сайдбара
+    const [promoCode, setPromoCode] = useState<string | null>(null); // стейты промокода  
+
+
+   const handleApplyPromo = (code: string) => { // Функция хэндлер с пропсом промокода
+    setPromoCode(code);
+    console.log('Applied promo:', code);
+    console.log(promoCode)
+    // можно диспатчить в глобальный стейт
+  };
 
   return (
     <>
     <header className="main-header">
-      <button className="sidebar-button" aria-label="Sidebar menu">
+      <button className="sidebar-button" onClick={() => setSidebarOpen(true)} aria-label="Sidebar menu">
         <FaBars />
       </button>
       <div className="logo-container">
@@ -31,6 +42,11 @@ const Header: React.FC = () => {
         </div>
       )}
     </header>
+    <Sidebar /* Дисплеим компонент сайдбара со всеми пропсами */
+    isOpen={sidebarOpen}
+    onClose={() => setSidebarOpen(false)}
+    onApplyPromo={handleApplyPromo}
+  />
       </>
   );
 };

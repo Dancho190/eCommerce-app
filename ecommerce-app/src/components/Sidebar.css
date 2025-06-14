@@ -1,0 +1,54 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 260px;
+  height: 100%;
+  background-color: #000;
+  color: white;
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar input {
+  padding: 8px;
+  border: 1px solid #fff;
+  background-color: transparent;
+  color: white;
+}
+
+.sidebar button {
+  padding: 8px 12px;
+  border: 1px solid #fff;
+  background-color: #111;
+  color: white;
+  cursor: pointer;
+}
+
+.close-button {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.sidebar-login-button {
+  background-color: #333;
+  color: black;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border: 1px solid black;
+}
