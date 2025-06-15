@@ -3,6 +3,8 @@ import { FaUser, FaShoppingCart, FaBars, FaTimes} from 'react-icons/fa';
 import logo from '../assets/logoipsum.png'
 import './Header.css';
 import Sidebar from './Sidebar';
+import { toast } from 'react-hot-toast';
+
 
 const Header: React.FC = () => {
     const [showBanner, setShowBanner] = useState(true); // Стейты дисплея баннера с сообщением
@@ -11,9 +13,12 @@ const Header: React.FC = () => {
 
 
    const handleApplyPromo = (code: string) => { // Функция хэндлер с пропсом промокода
+    if (code.toLowerCase() === 'promocode') {
     setPromoCode(code);
     console.log('Applied promo:', code);
     console.log(promoCode)
+    toast.success('You have successfully applied the promo code!');
+    }
     // можно диспатчить в глобальный стейт
   };
 
