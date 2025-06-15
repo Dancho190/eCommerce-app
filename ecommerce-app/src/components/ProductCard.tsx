@@ -13,7 +13,7 @@ interface ProductCardProps {
   currency: string // Пока что захардкодил,но потом добавим другие currencies с бэка
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ id, productKey, name, description, imageUrl, price  }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ id, productKey, name, description, imageUrl, price, }) => { // Пропсы что передаются с интерфейса и стейты промокода
   console.log(id)
   return (
     <Link to={`/products/${productKey}`} className="product-card-link"> {/* Навигация по пропсу(ключу продукта из коммерстулз) */}
